@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>Rassoul Shop Tidianiya - Collection · Tradition · Élégance</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & VARIABLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #8B6B4D;
+      --primary-dark: #4a3729;
+      --secondary: #b89b7b;
+      --text-dark: #1e2a2f;
+      --text-soft: #2c3e4a;
+      --text-light: #6e5c4b;
+      --bg-light: #fcf9f6;
+      --bg-soft: #f5ede5;
+      --bg-card: #ffffff;
+      --border: #f0e4d8;
+      --shadow: 0 10px 30px rgba(0,0,0,0.05);
+      --shadow-hover: 0 20px 40px rgba(84,63,44,0.15);
+      --whatsapp: #25D366;
+      --whatsapp-hover: #20b859;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== TYPOGRAPHIE ===== */
+    h1, h2, h3, h4, .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+
+    /* ===== HEADER & NAVIGATION ===== */
+    header {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .logo h1 {
+      font-size: clamp(20px, 4vw, 28px);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+
+    .logo span {
+      font-size: clamp(10px, 2vw, 12px);
+      color: var(--text-light);
+      display: block;
+      letter-spacing: 2px;
+    }
+
+    /* Menu principal */
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: clamp(15px, 3vw, 30px);
+      flex-wrap: wrap;
+    }
+
+    .menu > a {
+      text-decoration: none;
+      color: var(--text-soft);
+      font-weight: 500;
+      transition: color 0.3s;
+      font-size: clamp(14px, 2vw, 16px);
+      cursor: pointer;
+    }
+
+    .menu > a:hover {
+      color: var(--secondary);
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      min-width: 220px;
+      border-radius: 15px;
+      box-shadow: var(--shadow-hover);
+      padding: 10px 0;
+      display: none;
+      z-index: 1001;
+      margin-top: 10px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .dropdown-content a i {
+      width: 20px;
+      color: var(--secondary);
+    }
+
+    .dropdown-content a:hover {
+      background: var(--bg-soft);
+    }
+
+    /* Panier */
+    .cart-container {
+      position: relative;
+    }
+
+    .cart-icon {
+      background: var(--bg-soft);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s;
+      position: relative;
+    }
+
+    .cart-icon:hover {
+      background: #e8d9cc;
+    }
+
+    .cart-icon i {
+      font-size: 20px;
+      color: var(--text-dark);
+    }
+
+    #cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--secondary);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid white;
+    }
+
+    /* ===== PANIER DÉROULANT ===== */
+    .cart-panel {
+      position: absolute;
+      top: 55px;
+      right: 0;
+      width: 380px;
+      max-width: 90vw;
+      background: white;
+      border-radius: 25px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+      padding: 20px;
+      z-index: 1001;
+      display: none;
+    }
+
+    .cart-panel.show {
+      display: block;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+
+    .cart-header h3 {
+      font-size: 20px;
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-light);
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .close-cart:hover {
+      color: var(--text-dark);
+      transform: rotate(90deg);
+    }
+
+    .cart-items {
+      max-height: 400px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: var(--bg-soft);
+      padding: 12px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .cart-item-icon {
+      width: 50px;
+      height: 50px;
+      background: #e7dbcf;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .cart-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cart-item-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cart-item-price {
+      color: var(--text-light);
+      font-size: 14px;
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: #a66f5c;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 8px;
+      transition: color 0.3s;
+      flex-shrink: 0;
+    }
+
+    .cart-item-remove:hover {
+      color: #d32f2f;
+    }
+
+    .cart-total {
+      border-top: 2px dashed var(--border);
+      padding-top: 15px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .whatsapp-btn {
+      background: var(--whatsapp);
+      color: var(--text-dark);
+      border: none;
+      padding: 15px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s;
+    }
+
+    .whatsapp-btn:hover {
+      background: var(--whatsapp-hover);
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      background: linear-gradient(145deg, #fff9f4, var(--bg-soft));
+      text-align: center;
+      padding: 60px 20px;
+      margin-bottom: 40px;
+    }
+
+    .hero h2 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 400;
+      color: #30271f;
+      margin-bottom: 20px;
+    }
+
+    .hero-tags {
+      background: rgba(255,255,240,0.9);
+      display: inline-block;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: clamp(14px, 2.5vw, 18px);
+      color: var(--text-light);
+      max-width: 100%;
+      white-space: normal;
+    }
+
+    .hero-tags i {
+      color: var(--secondary);
+      margin: 0 10px;
+    }
+
+    /* ===== SECTION TITRE ===== */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 36px);
+      font-weight: 400;
+      margin: 50px 0 30px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--secondary), transparent);
+    }
+
+    /* ===== FILTRES ===== */
+    .category-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 10px 20px;
+      border: 2px solid var(--border);
+      background: white;
+      border-radius: 50px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 14px;
+    }
+
+    .filter-btn.active {
+      background: var(--secondary);
+      color: white;
+      border-color: var(--secondary);
+    }
+
+    .filter-btn:hover {
+      background: var(--bg-soft);
+    }
+
+    /* ===== GRILLE PRODUITS ===== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .product-image {
+      height: 200px;
+      background: linear-gradient(145deg, #f3ede8, #e9dfd7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      color: var(--text-light);
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+      opacity: 0;
+    }
+
+    .product-image img.loaded {
+      opacity: 1;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .product-image i {
+      position: absolute;
+      font-size: 50px;
+      color: var(--text-light);
+      opacity: 0.5;
+      z-index: 1;
+      transition: opacity 0.3s;
+    }
+
+    .product-image img.loaded ~ i {
+      opacity: 0;
+    }
+
+    .product-details {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-category {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-light);
+      margin-bottom: 5px;
+    }
+
+    .product-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .product-price {
+      font-size: 22px;
+      font-weight: 700;
+      color: #5d4432;
+      margin-bottom: 15px;
+    }
+
+    .add-btn {
+      width: 100%;
+      background: var(--text-dark);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: auto;
+    }
+
+    .add-btn:hover {
+      background: var(--secondary);
+    }
+
+    /* ===== SECTION GROSSISTE ===== */
+    .wholesale-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin: 40px 0;
+    }
+
+    .wholesale-card {
+      background: var(--bg-card);
+      padding: 40px 25px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wholesale-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .wholesale-card i {
+      font-size: 50px;
+      color: var(--secondary);
+      margin-bottom: 20px;
+    }
+
+    .wholesale-card h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .wholesale-card p {
+      color: var(--text-light);
+      margin-bottom: 25px;
+      flex: 1;
+    }
+
+    .wholesale-btn {
+      background: var(--text-dark);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s;
+    }
+
+    .wholesale-btn:hover {
+      background: var(--secondary);
+    }
+
+    /* ===== À PROPOS ===== */
+    .about-section {
+      background: #f2ebe4;
+      border-radius: 30px;
+      padding: 40px;
+      margin: 50px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-content h3 {
+      font-size: clamp(24px, 4vw, 32px);
+      margin-bottom: 20px;
+    }
+
+    .about-content p {
+      color: var(--text-light);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .stat {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .stat .number {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      color: var(--secondary);
+      line-height: 1.2;
+    }
+
+    .stat div:last-child {
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-section {
+      background: white;
+      border-radius: 30px;
+      padding: 40px;
+      margin: 50px 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .contact-info {
+      background: #faf5f0;
+      padding: 25px;
+      border-radius: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:last-child {
+      border-bottom: none;
+    }
+
+    .contact-item i {
+      font-size: 24px;
+      width: 40px;
+      color: var(--secondary);
+      flex-shrink: 0;
+    }
+
+    .contact-item h4 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .contact-item p {
+      color: var(--text-light);
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .contact-form {
+      background: #faf5f0;
+      padding: 25px;
+      border-radius: 20px;
+    }
+
+    .contact-form h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--secondary);
+      outline: none;
+    }
+
+    .submit-btn {
+      background: var(--text-dark);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s;
+      font-size: 16px;
+    }
+
+    .submit-btn:hover {
+      background: var(--secondary);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--text-dark);
+      color: #e0d6cc;
+      padding: 30px 0 20px;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .footer-content p {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media screen and (max-width: 1024px) {
+      .about-section,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .stats {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+
+      .menu {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .dropdown-content {
+        position: fixed;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 300px;
+      }
+
+      .cart-panel {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 400px;
+      }
+
+      .hero {
+        padding: 40px 15px;
+      }
+
+      .hero-tags {
+        padding: 12px 20px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 15px;
+      }
+
+      .wholesale-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-section,
+      .contact-section {
+        padding: 25px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .stat {
+        padding: 15px;
+      }
+
+      .category-filter {
+        gap: 8px;
+      }
+
+      .filter-btn {
+        padding: 8px 15px;
+        font-size: 13px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .menu {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .menu > a,
+      .dropdown > a {
+        font-size: 13px;
+      }
+
+      .product-image {
+        height: 160px;
+        font-size: 40px;
+      }
+
+      .product-details {
+        padding: 15px;
+      }
+
+      .product-name {
+        font-size: 16px;
+      }
+
+      .product-price {
+        font-size: 18px;
+      }
+
+      .wholesale-card {
+        padding: 25px 15px;
+      }
+
+      .wholesale-card h3 {
+        font-size: 20px;
+      }
+
+      .contact-item {
+        flex-wrap: wrap;
+      }
+
+      .contact-item i {
+        width: 30px;
+        font-size: 20px;
+      }
+
+      .filter-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+    }
+
+    /* Scrollbar */
+    .cart-items::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .cart-items::-webkit-scrollbar-track {
+      background: var(--border);
+      border-radius: 10px;
+    }
+
+    .cart-items::-webkit-scrollbar-thumb {
+      background: var(--secondary);
+      border-radius: 10px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .product-card {
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    /* Loader pour les images */
+    .image-loader {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <h1>Rassoul Shop Tidianiya</h1>
+      <span>collection · tradition · élégance</span>
+    </div>
+
+    <div class="menu">
+      <a onclick="showAllProducts()">Accueil</a>
+      
+      <div class="dropdown">
+        <a>Collections <i class="fas fa-chevron-down"></i></a>
+        <div class="dropdown-content">
+          <a onclick="filterByCategory('Homme')"><i class="fas fa-user-tie"></i> Hommes</a>
+          <a onclick="filterByCategory('Femme')"><i class="fas fa-fan"></i> Femmes</a>
+          <a onclick="filterByCategory('Enfant')"><i class="fas fa-child"></i> Enfants</a>
+          <a onclick="filterByCategory('Boubou')"><i class="fas fa-tshirt"></i> Boubous</a>
+          <a onclick="filterByCategory('Ensemble')"><i class="fas fa-tshirt"></i> Ensembles</a>
+          <a onclick="filterByCategory('Jalaba')"><i class="fas fa-tshirt"></i> Jalabas</a>
+          <a onclick="filterByCategory('Accessoire')"><i class="fas fa-clock"></i> Accessoires</a>
+        </div>
+      </div>
+
+      <a href="#grossiste">Grossiste</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
+
+      <div class="cart-container">
+        <div class="cart-icon" id="cartIcon">
+          <i class="fas fa-shopping-bag"></i>
+          <span id="cartCount">0</span>
+        </div>
+
+        <div class="cart-panel" id="cartPanel">
+          <div class="cart-header">
+            <h3>Mon panier</h3>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="cart-items" id="cartItems">
+            <div style="text-align: center; padding: 20px; color: var(--text-light);">Votre panier est vide</div>
+          </div>
+          <div class="cart-total">
+            <span>Total</span>
+            <span id="cartTotal">0 CFA</span>
+          </div>
+          <button class="whatsapp-btn" id="checkoutBtn">
+            <i class="fab fa-whatsapp"></i> Payer sur WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="accueil">
+    <h2>L'élégance à portée de main</h2>
+    <div class="hero-tags">
+      <i class="fas fa-star"></i> Boubous · Ensembles · Jalabas · Accessoires
+    </div>
+  </section>
+
+  <div class="container">
+    <h2 class="section-title" id="produits">Notre Collection</h2>
+    
+    <!-- FILTRES -->
+    <div class="category-filter">
+      <button class="filter-btn active" onclick="showAllProducts()">Tous</button>
+      <button class="filter-btn" onclick="filterByCategory('Homme')">Hommes</button>
+      <button class="filter-btn" onclick="filterByCategory('Femme')">Femmes</button>
+      <button class="filter-btn" onclick="filterByCategory('Enfant')">Enfants</button>
+      <button class="filter-btn" onclick="filterByCategory('Boubou')">Boubous</button>
+      <button class="filter-btn" onclick="filterByCategory('Ensemble')">Ensembles</button>
+      <button class="filter-btn" onclick="filterByCategory('Jalaba')">Jalabas</button>
+      <button class="filter-btn" onclick="filterByCategory('Accessoire')">Accessoires</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+
+    <section id="grossiste">
+      <h2 class="section-title">Devenez Revendeur</h2>
+      <div class="wholesale-grid">
+        <div class="wholesale-card">
+          <i class="fas fa-tags"></i>
+          <h3>Prix Grossiste</h3>
+          <p>Remises jusqu'à 30% sur les commandes en gros</p>
+          <button class="wholesale-btn" onclick="contactWholesale('Prix grossiste')">
+            <i class="fab fa-whatsapp"></i> Demander les prix
+          </button>
+        </div>
+        <div class="wholesale-card">
+          <i class="fas fa-boxes"></i>
+          <h3>Commande en Gros</h3>
+          <p>Minimum 50 000 CFA - Livraison partout au Sénégal</p>
+          <button class="wholesale-btn" onclick="contactWholesale('Commande en gros')">
+            <i class="fab fa-whatsapp"></i> Commander
+          </button>
+        </div>
+        <div class="wholesale-card">
+          <i class="fas fa-handshake"></i>
+          <h3>Partenariat</h3>
+          <p>Devenez partenaire officiel Rassoul Shop Tidianiya</p>
+          <button class="wholesale-btn" onclick="contactWholesale('Partenariat')">
+            <i class="fab fa-whatsapp"></i> Nous contacter
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="apropos">
+      <div class="about-section">
+        <div class="about-content">
+          <h3>À propos de Rassoul Shop Tidianiya</h3>
+          <p>Depuis 2018, nous sélectionnons pour vous le meilleur de la mode africaine et des accessoires. Qualité, tradition et authenticité sont nos maîtres-mots. Basés à Dakar, nous livrons partout au Sénégal.</p>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <div class="number">5000+</div>
+            <div>Clients satisfaits</div>
+          </div>
+          <div class="stat">
+            <div class="number">1000+</div>
+            <div>Produits/mois</div>
+          </div>
+          <div class="stat">
+            <div class="number">24/7</div>
+            <div>Support</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-section">
+        <h2 class="section-title">Contactez-nous</h2>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-phone-alt"></i>
+              <div>
+                <h4>Téléphone / WhatsApp</h4>
+                <p>+221 77 439 74 27</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-whatsapp"></i>
+              <div>
+                <h4>WhatsApp Business</h4>
+                <p>mamadou_seck7</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-instagram"></i>
+              <div>
+                <h4>Instagram</h4>
+                <p>@mamoseck9996</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>momoseck867@gmail.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Adresse</h4>
+                <p>Dakar, Sénégal</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h3>Envoyez-nous un message</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <input type="text" placeholder="Votre nom" id="name" required>
+              </div>
+              <div class="form-group">
+                <input type="tel" placeholder="Votre téléphone" id="phone" required>
+              </div>
+              <div class="form-group">
+                <select id="subject">
+                  <option>Demande d'information</option>
+                  <option>Devis grossiste</option>
+                  <option>Réclamation</option>
+                  <option>Partenariat</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <textarea rows="4" placeholder="Votre message" id="message" required></textarea>
+              </div>
+              <button type="submit" class="submit-btn">
+                <i class="fab fa-whatsapp"></i> Envoyer sur WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <p>© 2026 Rassoul Shop Tidianiya - Tous droits réservés</p>
+    <p>+221 77 439 74 27 | Dakar, Sénégal</p>
+  </div>
+</footer>
+
+<script>
+  // ===== CONFIGURATION =====
+  const CLOUDINARY_BASE = 'https://res.cloudinary.com/demo/image/upload/v1'; // Remplacez 'demo' par votre cloud name
+  
+  // ===== PRODUITS =====
+  const products = [
+    // Hommes
+    { id: 1, name: 'Boubou homme brodé', category: 'Homme', subcategory: 'Boubou', price: 55000, icon: 'fa-user-tie', cloudinaryId: 'boubou-homme-1' },
+    { id: 2, name: 'Boubou homme cérémonie', category: 'Homme', subcategory: 'Boubou', price: 65000, icon: 'fa-user-tie', cloudinaryId: 'boubou-homme-2' },
+    { id: 3, name: 'Ensemble homme 3 pièces', category: 'Homme', subcategory: 'Ensemble', price: 75000, icon: 'fa-user-tie', cloudinaryId: 'ensemble-homme-1' },
+    { id: 4, name: 'Jalaba homme', category: 'Homme', subcategory: 'Jalaba', price: 45000, icon: 'fa-user-tie', cloudinaryId: 'jalaba-homme-1' },
+    
+    // Femmes
+    { id: 5, name: 'Boubou femme brodé', category: 'Femme', subcategory: 'Boubou', price: 45000, icon: 'fa-fan', cloudinaryId: 'boubou-femme-1' },
+    { id: 6, name: 'Boubou femme cérémonie', category: 'Femme', subcategory: 'Boubou', price: 55000, icon: 'fa-fan', cloudinaryId: 'boubou-femme-2' },
+    { id: 7, name: 'Ensemble femme 2 pièces', category: 'Femme', subcategory: 'Ensemble', price: 48000, icon: 'fa-fan', cloudinaryId: 'ensemble-femme-1' },
+    { id: 8, name: 'Jalaba femme', category: 'Femme', subcategory: 'Jalaba', price: 42000, icon: 'fa-fan', cloudinaryId: 'jalaba-femme-1' },
+    
+    // Enfants
+    { id: 9, name: 'Boubou enfant garçon', category: 'Enfant', subcategory: 'Boubou', price: 25000, icon: 'fa-child', cloudinaryId: 'boubou-enfant-garcon' },
+    { id: 10, name: 'Boubou enfant fille', category: 'Enfant', subcategory: 'Boubou', price: 25000, icon: 'fa-child', cloudinaryId: 'boubou-enfant-fille' },
+    { id: 11, name: 'Ensemble enfant', category: 'Enfant', subcategory: 'Ensemble', price: 28000, icon: 'fa-child', cloudinaryId: 'ensemble-enfant-1' },
+    { id: 12, name: 'Jalaba enfant', category: 'Enfant', subcategory: 'Jalaba', price: 22000, icon: 'fa-child', cloudinaryId: 'jalaba-enfant-1' },
+    
+    // Accessoires
+    { id: 13, name: 'Montre luxe', category: 'Accessoire', price: 12500, icon: 'fa-clock', cloudinaryId: 'montre-luxe' },
+    { id: 14, name: 'Lunettes de soleil', category: 'Accessoire', price: 8900, icon: 'fa-sun', cloudinaryId: 'lunettes-soleil' },
+    { id: 15, name: 'Sac en cuir', category: 'Accessoire', price: 18500, icon: 'fa-bag-shopping', cloudinaryId: 'sac-cuir' },
+    { id: 16, name: 'Ceinture homme', category: 'Accessoire', price: 7500, icon: 'fa-belt', cloudinaryId: 'ceinture-homme' }
+  ];
+
+  // ===== PANIER =====
+  let cart = [];
+
+  // ===== ÉLÉMENTS DOM =====
+  const cartIcon = document.getElementById('cartIcon');
+  const cartPanel = document.getElementById('cartPanel');
+  const closeCart = document.getElementById('closeCart');
+  const cartItems = document.getElementById('cartItems');
+  const cartTotal = document.getElementById('cartTotal');
+  const cartCount = document.getElementById('cartCount');
+  const productsGrid = document.getElementById('productsGrid');
+
+  // ===== INTERSECTION OBSERVER (LAZY LOADING) =====
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          img.classList.add('loaded');
+          img.onload = () => {
+            img.classList.add('loaded');
+          };
+          imageObserver.unobserve(img);
+        }
+      }
+    });
+  }, { rootMargin: '50px' });
+
+  // ===== FONCTIONS =====
+  function getImageUrl(product) {
+    return `${CLOUDINARY_BASE}/${product.cloudinaryId}.jpg`;
+  }
+
+  function openCart() {
+    cartPanel.classList.add('show');
+  }
+
+  function closeCartPanel() {
+    cartPanel.classList.remove('show');
+  }
+
+  // ===== ÉVÉNEMENTS PANIER =====
+  cartIcon.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openCart();
+  });
+
+  closeCart.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeCartPanel();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!cartPanel.contains(e.target) && !cartIcon.contains(e.target)) {
+      closeCartPanel();
+    }
+  });
+
+  cartPanel.addEventListener('click', (e) => e.stopPropagation());
+
+  // ===== AFFICHAGE PRODUITS =====
+  function displayProducts(filterCategory = null) {
+    productsGrid.innerHTML = '';
+
+    let filteredProducts = products;
+    if (filterCategory) {
+      filteredProducts = products.filter(p => p.category === filterCategory || p.subcategory === filterCategory);
+    }
+
+    if (filteredProducts.length === 0) {
+      productsGrid.innerHTML = '<div style="text-align: center; padding: 50px; color: var(--text-light);">Aucun produit dans cette catégorie</div>';
+      return;
+    }
+
+    filteredProducts.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      
+      const imageUrl = getImageUrl(product);
+      
+      card.innerHTML = `
+        <div class="product-image">
+          <img data-src="${imageUrl}" 
+               alt="${product.name}" 
+               class="lazy-image"
+               loading="lazy">
+          <i class="fas ${product.icon}"></i>
+        </div>
+        <div class="product-details">
+          <div class="product-category">${product.category} ${product.subcategory ? '· ' + product.subcategory : ''}</div>
+          <div class="product-name">${product.name}</div>
+          <div class="product-price">${product.price.toLocaleString()} CFA</div>
+          <button class="add-btn" onclick="addToCart(${product.id})">
+            <i class="fas fa-cart-plus"></i> Ajouter
+          </button>
+        </div>
+      `;
+      
+      productsGrid.appendChild(card);
+      
+      const img = card.querySelector('img');
+      if (img) imageObserver.observe(img);
+    });
+
+    // Mise à jour des filtres actifs
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    
+    if (filterCategory) {
+      const btnText = {
+        'Homme': 'Hommes', 'Femme': 'Femmes', 'Enfant': 'Enfants',
+        'Boubou': 'Boubous', 'Ensemble': 'Ensembles', 'Jalaba': 'Jalabas', 'Accessoire': 'Accessoires'
+      }[filterCategory] || filterCategory;
+      
+      const activeBtn = Array.from(document.querySelectorAll('.filter-btn')).find(
+        btn => btn.textContent.trim() === btnText
+      );
+      if (activeBtn) activeBtn.classList.add('active');
+    } else {
+      document.querySelector('.filter-btn:first-child').classList.add('active');
+    }
+  }
+
+  // ===== FONCTIONS GLOBALES =====
+  window.showAllProducts = () => {
+    displayProducts();
+    document.getElementById('produits').scrollIntoView({ behavior: 'smooth' });
+  };
+
+  window.filterByCategory = (category) => {
+    displayProducts(category);
+    document.getElementById('produits').scrollIntoView({ behavior: 'smooth' });
+  };
+
+  window.addToCart = (productId) => {
+    const product = products.find(p => p.id === productId);
+    if (product) {
+      cart.push({ ...product, cartId: Date.now() + Math.random() });
+      updateCart();
+      openCart();
+    }
+  };
+
+  window.removeFromCart = (cartId) => {
+    cart = cart.filter(item => item.cartId !== cartId);
+    updateCart();
+  };
+
+  function updateCart() {
+    cartCount.textContent = cart.length;
+
+    if (cart.length === 0) {
+      cartItems.innerHTML = '<div style="text-align: center; padding: 20px; color: #6e5c4b;">Votre panier est vide</div>';
+      cartTotal.textContent = '0 CFA';
+      return;
+    }
+
+    let html = '';
+    let total = 0;
+
+    cart.forEach(item => {
+      total += item.price;
+      html += `
+        <div class="cart-item">
+          <div class="cart-item-icon"><i class="fas ${item.icon}"></i></div>
+          <div class="cart-item-info">
+            <div class="cart-item-title">${item.name}</div>
+            <div class="cart-item-price">${item.price.toLocaleString()} CFA</div>
+          </div>
+          <button class="cart-item-remove" onclick="removeFromCart(${item.cartId})">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      `;
+    });
+
+    cartItems.innerHTML = html;
+    cartTotal.textContent = total.toLocaleString() + ' CFA';
+  }
+
+  // ===== WHATSAPP =====
+  document.getElementById('checkoutBtn').addEventListener('click', () => {
+    if (cart.length === 0) return alert('Votre panier est vide');
+
+    let message = '*Nouvelle commande Rassoul Shop Tidianiya*%0A%0A';
+    cart.forEach(item => message += `• ${item.name} : ${item.price.toLocaleString()} CFA%0A`);
+    message += `%0A*Total : ${cart.reduce((acc, i) => acc + i.price, 0).toLocaleString()} CFA*`;
+    window.open(`https://wa.me/221774397427?text=${message}`, '_blank');
+  });
+
+  window.contactWholesale = (type) => {
+    window.open(`https://wa.me/221774397427?text=*Demande ${type} - Rassoul Shop Tidianiya*%0A%0ABonjour, je suis intéressé par vos offres grossistes.`, '_blank');
+  };
+
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    window.open(`https://wa.me/221774397427?text=*Message de ${name}*%0ATéléphone : ${phone}%0ASujet : ${subject}%0A%0A${message}`, '_blank');
+  });
+
+  // ===== ANCRES =====
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // ===== INITIALISATION =====
+  displayProducts();
+  updateCart();
+</script>
+
+</body>
+</html>
