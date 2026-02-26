@@ -2,14 +2,11 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rassoul Shop Tidianiya - Collection · Tradition · Élégance</title>
-  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== RESET & VARIABLES ===== */
+    /* ===== STYLES COMPLETS ===== */
     * {
       margin: 0;
       padding: 0;
@@ -48,7 +45,6 @@
       padding: 0 20px;
     }
 
-    /* ===== TYPOGRAPHIE ===== */
     h1, h2, h3, h4, .logo {
       font-family: 'Playfair Display', serif;
       font-weight: 600;
@@ -90,7 +86,6 @@
       letter-spacing: 2px;
     }
 
-    /* Menu principal */
     .menu {
       display: flex;
       align-items: center;
@@ -281,14 +276,20 @@
     .cart-item-title {
       font-weight: 600;
       margin-bottom: 5px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .cart-item-price {
       color: var(--text-light);
       font-size: 14px;
+    }
+
+    .cart-item-color {
+      font-size: 12px;
+      color: var(--secondary);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
     .cart-item-remove {
@@ -442,7 +443,7 @@
     }
 
     .product-image {
-      height: 200px;
+      height: 220px;
       background: linear-gradient(145deg, #f3ede8, #e9dfd7);
       display: flex;
       align-items: center;
@@ -459,28 +460,10 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.5s;
-      opacity: 0;
-    }
-
-    .product-image img.loaded {
-      opacity: 1;
     }
 
     .product-card:hover .product-image img {
       transform: scale(1.05);
-    }
-
-    .product-image i {
-      position: absolute;
-      font-size: 50px;
-      color: var(--text-light);
-      opacity: 0.5;
-      z-index: 1;
-      transition: opacity 0.3s;
-    }
-
-    .product-image img.loaded ~ i {
-      opacity: 0;
     }
 
     .product-details {
@@ -510,6 +493,32 @@
       font-weight: 700;
       color: #5d4432;
       margin-bottom: 15px;
+    }
+
+    /* Sélecteur de couleurs */
+    .color-selector {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .color-option {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .color-option:hover {
+      transform: scale(1.1);
+    }
+
+    .color-option.selected {
+      border-color: var(--secondary);
+      transform: scale(1.1);
     }
 
     .add-btn {
@@ -761,7 +770,6 @@
         grid-template-columns: 1fr;
         gap: 30px;
       }
-      
       .stats {
         max-width: 600px;
         margin: 0 auto;
@@ -774,12 +782,10 @@
         gap: 15px;
         padding: 15px;
       }
-
       .menu {
         justify-content: center;
         width: 100%;
       }
-
       .dropdown-content {
         position: fixed;
         top: auto;
@@ -788,7 +794,6 @@
         width: 90%;
         max-width: 300px;
       }
-
       .cart-panel {
         position: fixed;
         top: 50%;
@@ -797,42 +802,33 @@
         width: 90%;
         max-width: 400px;
       }
-
       .hero {
         padding: 40px 15px;
       }
-
       .hero-tags {
         padding: 12px 20px;
       }
-
       .products-grid {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
         gap: 15px;
       }
-
       .wholesale-grid {
         grid-template-columns: 1fr;
       }
-
       .about-section,
       .contact-section {
         padding: 25px;
       }
-
       .stats {
         grid-template-columns: 1fr;
         gap: 10px;
       }
-
       .stat {
         padding: 15px;
       }
-
       .category-filter {
         gap: 8px;
       }
-
       .filter-btn {
         padding: 8px 15px;
         font-size: 13px;
@@ -844,68 +840,53 @@
         flex-wrap: wrap;
         gap: 10px;
       }
-
       .menu > a,
       .dropdown > a {
         font-size: 13px;
       }
-
       .product-image {
-        height: 160px;
-        font-size: 40px;
+        height: 180px;
       }
-
       .product-details {
         padding: 15px;
       }
-
       .product-name {
         font-size: 16px;
       }
-
       .product-price {
         font-size: 18px;
       }
-
       .wholesale-card {
         padding: 25px 15px;
       }
-
       .wholesale-card h3 {
         font-size: 20px;
       }
-
       .contact-item {
         flex-wrap: wrap;
       }
-
       .contact-item i {
         width: 30px;
         font-size: 20px;
       }
-
       .filter-btn {
         padding: 6px 12px;
         font-size: 12px;
       }
     }
 
-    /* Scrollbar */
     .cart-items::-webkit-scrollbar {
       width: 6px;
     }
-
     .cart-items::-webkit-scrollbar-track {
       background: var(--border);
       border-radius: 10px;
     }
-
     .cart-items::-webkit-scrollbar-thumb {
       background: var(--secondary);
       border-radius: 10px;
     }
 
-    /* Animations */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -916,26 +897,8 @@
         transform: translateY(0);
       }
     }
-
     .product-card {
       animation: fadeIn 0.5s ease-out;
-    }
-
-    /* Loader pour les images */
-    .image-loader {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 200% 100%;
-      animation: loading 1.5s infinite;
-    }
-
-    @keyframes loading {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
     }
   </style>
 </head>
@@ -1006,7 +969,6 @@
   <div class="container">
     <h2 class="section-title" id="produits">Notre Collection</h2>
     
-    <!-- FILTRES -->
     <div class="category-filter">
       <button class="filter-btn active" onclick="showAllProducts()">Tous</button>
       <button class="filter-btn" onclick="filterByCategory('Homme')">Hommes</button>
@@ -1057,18 +1019,9 @@
           <p>Depuis 2018, nous sélectionnons pour vous le meilleur de la mode africaine et des accessoires. Qualité, tradition et authenticité sont nos maîtres-mots. Basés à Dakar, nous livrons partout au Sénégal.</p>
         </div>
         <div class="stats">
-          <div class="stat">
-            <div class="number">5000+</div>
-            <div>Clients satisfaits</div>
-          </div>
-          <div class="stat">
-            <div class="number">1000+</div>
-            <div>Produits/mois</div>
-          </div>
-          <div class="stat">
-            <div class="number">24/7</div>
-            <div>Support</div>
-          </div>
+          <div class="stat"><div class="number">5000+</div><div>Clients satisfaits</div></div>
+          <div class="stat"><div class="number">1000+</div><div>Produits/mois</div></div>
+          <div class="stat"><div class="number">24/7</div><div>Support</div></div>
         </div>
       </div>
     </section>
@@ -1078,52 +1031,18 @@
         <h2 class="section-title">Contactez-nous</h2>
         <div class="contact-grid">
           <div class="contact-info">
-            <div class="contact-item">
-              <i class="fas fa-phone-alt"></i>
-              <div>
-                <h4>Téléphone / WhatsApp</h4>
-                <p>+221 77 439 74 27</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fab fa-whatsapp"></i>
-              <div>
-                <h4>WhatsApp Business</h4>
-                <p>mamadou_seck7</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fab fa-instagram"></i>
-              <div>
-                <h4>Instagram</h4>
-                <p>@mamoseck9996</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <div>
-                <h4>Email</h4>
-                <p>momoseck867@gmail.com</p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <div>
-                <h4>Adresse</h4>
-                <p>Dakar, Sénégal</p>
-              </div>
-            </div>
+            <div class="contact-item"><i class="fas fa-phone-alt"></i><div><h4>Téléphone / WhatsApp</h4><p>+221 77 439 74 27</p></div></div>
+            <div class="contact-item"><i class="fab fa-whatsapp"></i><div><h4>WhatsApp Business</h4><p>mamadou_seck7</p></div></div>
+            <div class="contact-item"><i class="fab fa-instagram"></i><div><h4>Instagram</h4><p>@mamoseck9996</p></div></div>
+            <div class="contact-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>momoseck867@gmail.com</p></div></div>
+            <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><h4>Adresse</h4><p>Dakar, Sénégal</p></div></div>
           </div>
 
           <div class="contact-form">
             <h3>Envoyez-nous un message</h3>
             <form id="contactForm">
-              <div class="form-group">
-                <input type="text" placeholder="Votre nom" id="name" required>
-              </div>
-              <div class="form-group">
-                <input type="tel" placeholder="Votre téléphone" id="phone" required>
-              </div>
+              <div class="form-group"><input type="text" placeholder="Votre nom" id="name" required></div>
+              <div class="form-group"><input type="tel" placeholder="Votre téléphone" id="phone" required></div>
               <div class="form-group">
                 <select id="subject">
                   <option>Demande d'information</option>
@@ -1132,12 +1051,8 @@
                   <option>Partenariat</option>
                 </select>
               </div>
-              <div class="form-group">
-                <textarea rows="4" placeholder="Votre message" id="message" required></textarea>
-              </div>
-              <button type="submit" class="submit-btn">
-                <i class="fab fa-whatsapp"></i> Envoyer sur WhatsApp
-              </button>
+              <div class="form-group"><textarea rows="4" placeholder="Votre message" id="message" required></textarea></div>
+              <button type="submit" class="submit-btn"><i class="fab fa-whatsapp"></i> Envoyer sur WhatsApp</button>
             </form>
           </div>
         </div>
@@ -1154,40 +1069,323 @@
 </footer>
 
 <script>
-  // ===== CONFIGURATION =====
-  const CLOUDINARY_BASE = 'https://res.cloudinary.com/demo/image/upload/v1'; // Remplacez 'demo' par votre cloud name
-  
-  // ===== PRODUITS =====
-  const products = [
-    // Hommes
-    { id: 1, name: 'Boubou homme brodé', category: 'Homme', subcategory: 'Boubou', price: 55000, icon: 'fa-user-tie', cloudinaryId: 'boubou-homme-1' },
-    { id: 2, name: 'Boubou homme cérémonie', category: 'Homme', subcategory: 'Boubou', price: 65000, icon: 'fa-user-tie', cloudinaryId: 'boubou-homme-2' },
-    { id: 3, name: 'Ensemble homme 3 pièces', category: 'Homme', subcategory: 'Ensemble', price: 75000, icon: 'fa-user-tie', cloudinaryId: 'ensemble-homme-1' },
-    { id: 4, name: 'Jalaba homme', category: 'Homme', subcategory: 'Jalaba', price: 45000, icon: 'fa-user-tie', cloudinaryId: 'jalaba-homme-1' },
-    
-    // Femmes
-    { id: 5, name: 'Boubou femme brodé', category: 'Femme', subcategory: 'Boubou', price: 45000, icon: 'fa-fan', cloudinaryId: 'boubou-femme-1' },
-    { id: 6, name: 'Boubou femme cérémonie', category: 'Femme', subcategory: 'Boubou', price: 55000, icon: 'fa-fan', cloudinaryId: 'boubou-femme-2' },
-    { id: 7, name: 'Ensemble femme 2 pièces', category: 'Femme', subcategory: 'Ensemble', price: 48000, icon: 'fa-fan', cloudinaryId: 'ensemble-femme-1' },
-    { id: 8, name: 'Jalaba femme', category: 'Femme', subcategory: 'Jalaba', price: 42000, icon: 'fa-fan', cloudinaryId: 'jalaba-femme-1' },
-    
-    // Enfants
-    { id: 9, name: 'Boubou enfant garçon', category: 'Enfant', subcategory: 'Boubou', price: 25000, icon: 'fa-child', cloudinaryId: 'boubou-enfant-garcon' },
-    { id: 10, name: 'Boubou enfant fille', category: 'Enfant', subcategory: 'Boubou', price: 25000, icon: 'fa-child', cloudinaryId: 'boubou-enfant-fille' },
-    { id: 11, name: 'Ensemble enfant', category: 'Enfant', subcategory: 'Ensemble', price: 28000, icon: 'fa-child', cloudinaryId: 'ensemble-enfant-1' },
-    { id: 12, name: 'Jalaba enfant', category: 'Enfant', subcategory: 'Jalaba', price: 22000, icon: 'fa-child', cloudinaryId: 'jalaba-enfant-1' },
-    
-    // Accessoires
-    { id: 13, name: 'Montre luxe', category: 'Accessoire', price: 12500, icon: 'fa-clock', cloudinaryId: 'montre-luxe' },
-    { id: 14, name: 'Lunettes de soleil', category: 'Accessoire', price: 8900, icon: 'fa-sun', cloudinaryId: 'lunettes-soleil' },
-    { id: 15, name: 'Sac en cuir', category: 'Accessoire', price: 18500, icon: 'fa-bag-shopping', cloudinaryId: 'sac-cuir' },
-    { id: 16, name: 'Ceinture homme', category: 'Accessoire', price: 7500, icon: 'fa-belt', cloudinaryId: 'ceinture-homme' }
+  // ===== CONFIGURATION DES COULEURS =====
+  const colorOptions = [
+    { name: 'Blanc', code: '#FFFFFF', border: '#ddd' },
+    { name: 'Noir', code: '#000000', border: '#333' },
+    { name: 'Bleu', code: '#3498db', border: '#2980b9' },
+    { name: 'Rouge', code: '#e74c3c', border: '#c0392b' },
+    { name: 'Vert', code: '#2ecc71', border: '#27ae60' },
+    { name: 'Or', code: '#f1c40f', border: '#f39c12' },
+    { name: 'Marron', code: '#8B6B4D', border: '#4a3729' }
   ];
 
-  // ===== PANIER =====
-  let cart = [];
+  // ===== 27 PRODUITS AVEC 27 IMAGES UNIQUES =====
+  const products = [
+    // HOMMES - BOUBOUS (3 images uniques)
+    { 
+      id: 1, 
+      name: 'Boubou homme brodé', 
+      category: 'Homme', 
+      subcategory: 'Boubou', 
+      price: 25000, 
+      icon: 'fa-user-tie',
+      image: 'https://images.pexels.com/photos/3774836/pexels-photo-3774836.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Boubou traditionnel avec broderies fines'
+    },
+    { 
+      id: 2, 
+      name: 'Boubou homme cérémonie', 
+      category: 'Homme', 
+      subcategory: 'Boubou', 
+      price: 35000, 
+      icon: 'fa-user-tie',
+      image: 'https://images.pexels.com/photos/3774837/pexels-photo-3774837.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Boubou de cérémonie avec motifs luxueux'
+    },
+    { 
+      id: 3, 
+      name: 'Grand boubou homme', 
+      category: 'Homme', 
+      subcategory: 'Boubou', 
+      price: 50000, 
+      icon: 'fa-user-tie',
+      image: 'https://images.pexels.com/photos/3774838/pexels-photo-3774838.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Grand boubou ample pour grandes occasions'
+    },
 
-  // ===== ÉLÉMENTS DOM =====
+    // HOMMES - ENSEMBLES (2 images uniques)
+    { 
+      id: 4, 
+      name: 'Ensemble homme 3 pièces', 
+      category: 'Homme', 
+      subcategory: 'Ensemble', 
+      price: 45000, 
+      icon: 'fa-user-tie',
+      image: 'https://images.pexels.com/photos/3774839/pexels-photo-3774839.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Ensemble complet : boubou, chemise, pantalon'
+    },
+    { 
+      id: 5, 
+      name: 'Tenue africaine homme complète', 
+      category: 'Homme', 
+      subcategory: 'Ensemble', 
+      price: 48000, 
+      icon: 'fa-user-tie',
+      image: 'https://images.pexels.com/photos/3774840/pexels-photo-3774840.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Tenue traditionnelle complète'
+    },
+
+    // HOMMES - JALABAS (1 image unique)
+    { 
+      id: 6, 
+      name: 'Jalaba homme', 
+      category: 'Homme', 
+      subcategory: 'Jalaba', 
+      price: 22000, 
+      icon: 'fa-user-tie',
+      image: 'https://images.pexels.com/photos/3774841/pexels-photo-3774841.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Jalaba légère et élégante pour homme'
+    },
+
+    // HOMMES - COSTUMES (1 image unique)
+    { 
+      id: 7, 
+      name: 'Costume homme élégant', 
+      category: 'Homme', 
+      subcategory: 'Costume', 
+      price: 55000, 
+      icon: 'fa-user-tie',
+      image: 'https://images.pexels.com/photos/3774842/pexels-photo-3774842.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Costume moderne pour occasions spéciales'
+    },
+
+    // HOMMES - CHEMISES (1 image unique)
+    { 
+      id: 8, 
+      name: 'Chemise homme luxe', 
+      category: 'Homme', 
+      subcategory: 'Chemise', 
+      price: 12000, 
+      icon: 'fa-user-tie',
+      image: 'https://images.pexels.com/photos/3774843/pexels-photo-3774843.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Chemise en tissu haut de gamme'
+    },
+
+    // HOMMES - PANTALONS (1 image unique)
+    { 
+      id: 9, 
+      name: 'Pantalon homme habillé', 
+      category: 'Homme', 
+      subcategory: 'Pantalon', 
+      price: 15000, 
+      icon: 'fa-user-tie',
+      image: 'https://images.pexels.com/photos/3774844/pexels-photo-3774844.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Pantalon élégant pour toutes occasions'
+    },
+
+    // HOMMES - KAFTANS (1 image unique)
+    { 
+      id: 10, 
+      name: 'Kaftan homme', 
+      category: 'Homme', 
+      subcategory: 'Kaftan', 
+      price: 40000, 
+      icon: 'fa-user-tie',
+      image: 'https://images.pexels.com/photos/3774845/pexels-photo-3774845.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Kaftan traditionnel richement décoré'
+    },
+
+    // FEMMES - ROBES (3 images uniques)
+    { 
+      id: 11, 
+      name: 'Robe femme simple', 
+      category: 'Femme', 
+      subcategory: 'Robe', 
+      price: 5500, 
+      icon: 'fa-fan',
+      image: 'https://images.pexels.com/photos/3774846/pexels-photo-3774846.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Robe légère et confortable'
+    },
+    { 
+      id: 12, 
+      name: 'Robe femme élégante', 
+      category: 'Femme', 
+      subcategory: 'Robe', 
+      price: 9000, 
+      icon: 'fa-fan',
+      image: 'https://images.pexels.com/photos/3774847/pexels-photo-3774847.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Robe chic pour soirées'
+    },
+    { 
+      id: 13, 
+      name: 'Robe africaine', 
+      category: 'Femme', 
+      subcategory: 'Robe', 
+      price: 30000, 
+      icon: 'fa-fan',
+      image: 'https://images.pexels.com/photos/3774848/pexels-photo-3774848.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Robe traditionnelle africaine'
+    },
+
+    // FEMMES - ENSEMBLES (3 images uniques)
+    { 
+      id: 14, 
+      name: 'Ensemble femme', 
+      category: 'Femme', 
+      subcategory: 'Ensemble', 
+      price: 10000, 
+      icon: 'fa-fan',
+      image: 'https://images.pexels.com/photos/3774849/pexels-photo-3774849.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Ensemble deux pièces élégant'
+    },
+    { 
+      id: 15, 
+      name: 'Ensemble femme 2 pièces', 
+      category: 'Femme', 
+      subcategory: 'Ensemble', 
+      price: 25000, 
+      icon: 'fa-fan',
+      image: 'https://images.pexels.com/photos/3774850/pexels-photo-3774850.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Ensemble moderne deux pièces'
+    },
+    { 
+      id: 16, 
+      name: 'Tenue africaine femme complète', 
+      category: 'Femme', 
+      subcategory: 'Ensemble', 
+      price: 38000, 
+      icon: 'fa-fan',
+      image: 'https://images.pexels.com/photos/3774851/pexels-photo-3774851.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Tenue traditionnelle complète'
+    },
+
+    // FEMMES - BOUBOUS (2 images uniques)
+    { 
+      id: 17, 
+      name: 'Boubou femme brodé', 
+      category: 'Femme', 
+      subcategory: 'Boubou', 
+      price: 28000, 
+      icon: 'fa-fan',
+      image: 'https://images.pexels.com/photos/3774852/pexels-photo-3774852.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Boubou femme avec broderies'
+    },
+    { 
+      id: 18, 
+      name: 'Boubou femme cérémonie', 
+      category: 'Femme', 
+      subcategory: 'Boubou', 
+      price: 35000, 
+      icon: 'fa-fan',
+      image: 'https://images.pexels.com/photos/3774853/pexels-photo-3774853.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Boubou de cérémonie luxueux'
+    },
+
+    // FEMMES - JALABAS (1 image unique)
+    { 
+      id: 19, 
+      name: 'Jalaba femme', 
+      category: 'Femme', 
+      subcategory: 'Jalaba', 
+      price: 22000, 
+      icon: 'fa-fan',
+      image: 'https://images.pexels.com/photos/3774854/pexels-photo-3774854.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Jalaba féminine élégante'
+    },
+
+    // FEMMES - CAFTANS (1 image unique)
+    { 
+      id: 20, 
+      name: 'Caftan femme', 
+      category: 'Femme', 
+      subcategory: 'Caftan', 
+      price: 32000, 
+      icon: 'fa-fan',
+      image: 'https://images.pexels.com/photos/3774855/pexels-photo-3774855.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Caftan luxueux pour femme'
+    },
+
+    // ENFANTS - BOUBOUS (2 images uniques)
+    { 
+      id: 21, 
+      name: 'Boubou enfant garçon', 
+      category: 'Enfant', 
+      subcategory: 'Boubou', 
+      price: 15000, 
+      icon: 'fa-child',
+      image: 'https://images.pexels.com/photos/3774856/pexels-photo-3774856.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Boubou pour garçon'
+    },
+    { 
+      id: 22, 
+      name: 'Boubou enfant fille', 
+      category: 'Enfant', 
+      subcategory: 'Boubou', 
+      price: 15000, 
+      icon: 'fa-child',
+      image: 'https://images.pexels.com/photos/3774857/pexels-photo-3774857.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Boubou pour fille'
+    },
+
+    // ENFANTS - JALABAS (2 images uniques)
+    { 
+      id: 23, 
+      name: 'Jallaba Enfant', 
+      category: 'Enfant', 
+      subcategory: 'Jalaba', 
+      price: 17000, 
+      icon: 'fa-child',
+      image: 'https://images.pexels.com/photos/3774858/pexels-photo-3774858.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Jalaba pour enfant'
+    },
+    { 
+      id: 24, 
+      name: 'Jalaba enfant', 
+      category: 'Enfant', 
+      subcategory: 'Jalaba', 
+      price: 14000, 
+      icon: 'fa-child',
+      image: 'https://images.pexels.com/photos/3774859/pexels-photo-3774859.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Jalaba légère pour enfant'
+    },
+
+    // ENFANTS - ENSEMBLES (3 images uniques)
+    { 
+      id: 25, 
+      name: 'Ensemble enfant', 
+      category: 'Enfant', 
+      subcategory: 'Ensemble', 
+      price: 18000, 
+      icon: 'fa-child',
+      image: 'https://images.pexels.com/photos/3774860/pexels-photo-3774860.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Ensemble complet pour enfant'
+    },
+    { 
+      id: 26, 
+      name: 'Tenue enfant garçon', 
+      category: 'Enfant', 
+      subcategory: 'Ensemble', 
+      price: 16000, 
+      icon: 'fa-child',
+      image: 'https://images.pexels.com/photos/3774861/pexels-photo-3774861.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Tenue traditionnelle pour garçon'
+    },
+    { 
+      id: 27, 
+      name: 'Tenue enfant fille', 
+      category: 'Enfant', 
+      subcategory: 'Ensemble', 
+      price: 16000, 
+      icon: 'fa-child',
+      image: 'https://images.pexels.com/photos/3774862/pexels-photo-3774862.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Tenue traditionnelle pour fille'
+    }
+  ];
+
+  let cart = [];
+  let selectedColors = {};
+
   const cartIcon = document.getElementById('cartIcon');
   const cartPanel = document.getElementById('cartPanel');
   const closeCart = document.getElementById('closeCart');
@@ -1196,62 +1394,35 @@
   const cartCount = document.getElementById('cartCount');
   const productsGrid = document.getElementById('productsGrid');
 
-  // ===== INTERSECTION OBSERVER (LAZY LOADING) =====
-  const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        if (img.dataset.src) {
-          img.src = img.dataset.src;
-          img.classList.add('loaded');
-          img.onload = () => {
-            img.classList.add('loaded');
-          };
-          imageObserver.unobserve(img);
-        }
-      }
-    });
-  }, { rootMargin: '50px' });
+  function openCart() { cartPanel.classList.add('show'); }
+  function closeCartPanel() { cartPanel.classList.remove('show'); }
 
-  // ===== FONCTIONS =====
-  function getImageUrl(product) {
-    return `${CLOUDINARY_BASE}/${product.cloudinaryId}.jpg`;
-  }
-
-  function openCart() {
-    cartPanel.classList.add('show');
-  }
-
-  function closeCartPanel() {
-    cartPanel.classList.remove('show');
-  }
-
-  // ===== ÉVÉNEMENTS PANIER =====
-  cartIcon.addEventListener('click', (e) => {
-    e.stopPropagation();
-    openCart();
-  });
-
-  closeCart.addEventListener('click', (e) => {
-    e.stopPropagation();
-    closeCartPanel();
-  });
-
+  cartIcon.addEventListener('click', (e) => { e.stopPropagation(); openCart(); });
+  closeCart.addEventListener('click', (e) => { e.stopPropagation(); closeCartPanel(); });
   document.addEventListener('click', (e) => {
-    if (!cartPanel.contains(e.target) && !cartIcon.contains(e.target)) {
-      closeCartPanel();
-    }
+    if (!cartPanel.contains(e.target) && !cartIcon.contains(e.target)) closeCartPanel();
   });
-
   cartPanel.addEventListener('click', (e) => e.stopPropagation());
 
-  // ===== AFFICHAGE PRODUITS =====
+  window.selectColor = function(productId, colorCode) {
+    selectedColors[productId] = colorCode;
+    document.querySelectorAll(`.color-option[data-product="${productId}"]`).forEach(opt => {
+      if (opt.dataset.color === colorCode) {
+        opt.classList.add('selected');
+      } else {
+        opt.classList.remove('selected');
+      }
+    });
+  };
+
   function displayProducts(filterCategory = null) {
     productsGrid.innerHTML = '';
-
     let filteredProducts = products;
+    
     if (filterCategory) {
-      filteredProducts = products.filter(p => p.category === filterCategory || p.subcategory === filterCategory);
+      filteredProducts = products.filter(p => 
+        p.category === filterCategory || p.subcategory === filterCategory
+      );
     }
 
     if (filteredProducts.length === 0) {
@@ -1259,45 +1430,52 @@
       return;
     }
 
-    filteredProducts.forEach(product => {
+    filteredProducts.forEach(p => {
+      if (!selectedColors[p.id]) {
+        selectedColors[p.id] = colorOptions[0].code;
+      }
+
       const card = document.createElement('div');
       card.className = 'product-card';
       
-      const imageUrl = getImageUrl(product);
+      let colorHtml = '<div class="color-selector">';
+      colorOptions.forEach(color => {
+        const isSelected = selectedColors[p.id] === color.code ? 'selected' : '';
+        colorHtml += `
+          <div class="color-option ${isSelected}" 
+               style="background-color: ${color.code}; border: 2px solid ${color.border};"
+               data-product="${p.id}"
+               data-color="${color.code}"
+               onclick="selectColor(${p.id}, '${color.code}')"
+               title="${color.name}">
+          </div>
+        `;
+      });
+      colorHtml += '</div>';
       
       card.innerHTML = `
         <div class="product-image">
-          <img data-src="${imageUrl}" 
-               alt="${product.name}" 
-               class="lazy-image"
-               loading="lazy">
-          <i class="fas ${product.icon}"></i>
+          <img src="${p.image}" alt="${p.name}" loading="lazy" style="width:100%; height:100%; object-fit:cover;">
         </div>
         <div class="product-details">
-          <div class="product-category">${product.category} ${product.subcategory ? '· ' + product.subcategory : ''}</div>
-          <div class="product-name">${product.name}</div>
-          <div class="product-price">${product.price.toLocaleString()} CFA</div>
-          <button class="add-btn" onclick="addToCart(${product.id})">
+          <div class="product-category">${p.category} · ${p.subcategory || ''}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-price">${p.price.toLocaleString()} CFA</div>
+          ${colorHtml}
+          <button class="add-btn" onclick="addToCart(${p.id})">
             <i class="fas fa-cart-plus"></i> Ajouter
           </button>
         </div>
       `;
-      
       productsGrid.appendChild(card);
-      
-      const img = card.querySelector('img');
-      if (img) imageObserver.observe(img);
     });
 
-    // Mise à jour des filtres actifs
     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-    
     if (filterCategory) {
       const btnText = {
         'Homme': 'Hommes', 'Femme': 'Femmes', 'Enfant': 'Enfants',
         'Boubou': 'Boubous', 'Ensemble': 'Ensembles', 'Jalaba': 'Jalabas', 'Accessoire': 'Accessoires'
       }[filterCategory] || filterCategory;
-      
       const activeBtn = Array.from(document.querySelectorAll('.filter-btn')).find(
         btn => btn.textContent.trim() === btnText
       );
@@ -1307,71 +1485,73 @@
     }
   }
 
-  // ===== FONCTIONS GLOBALES =====
-  window.showAllProducts = () => {
-    displayProducts();
-    document.getElementById('produits').scrollIntoView({ behavior: 'smooth' });
-  };
-
-  window.filterByCategory = (category) => {
-    displayProducts(category);
-    document.getElementById('produits').scrollIntoView({ behavior: 'smooth' });
-  };
+  window.showAllProducts = () => displayProducts();
+  window.filterByCategory = (cat) => displayProducts(cat);
 
   window.addToCart = (productId) => {
     const product = products.find(p => p.id === productId);
-    if (product) {
-      cart.push({ ...product, cartId: Date.now() + Math.random() });
-      updateCart();
-      openCart();
+    const selectedColor = selectedColors[productId] || colorOptions[0].code;
+    const colorName = colorOptions.find(c => c.code === selectedColor)?.name || 'Blanc';
+    
+    if (product) { 
+      cart.push({
+        ...product, 
+        cartId: Date.now() + Math.random(),
+        selectedColor: selectedColor,
+        colorName: colorName
+      }); 
+      updateCart(); 
+      openCart(); 
     }
   };
 
-  window.removeFromCart = (cartId) => {
-    cart = cart.filter(item => item.cartId !== cartId);
-    updateCart();
+  window.removeFromCart = (cartId) => { 
+    cart = cart.filter(i => i.cartId !== cartId); 
+    updateCart(); 
   };
 
   function updateCart() {
     cartCount.textContent = cart.length;
-
-    if (cart.length === 0) {
-      cartItems.innerHTML = '<div style="text-align: center; padding: 20px; color: #6e5c4b;">Votre panier est vide</div>';
+    if (!cart.length) {
+      cartItems.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--text-light);">Votre panier est vide</div>';
       cartTotal.textContent = '0 CFA';
       return;
     }
-
-    let html = '';
-    let total = 0;
-
-    cart.forEach(item => {
-      total += item.price;
+    let html = '', total = 0;
+    cart.forEach(i => {
+      total += i.price;
       html += `
         <div class="cart-item">
-          <div class="cart-item-icon"><i class="fas ${item.icon}"></i></div>
-          <div class="cart-item-info">
-            <div class="cart-item-title">${item.name}</div>
-            <div class="cart-item-price">${item.price.toLocaleString()} CFA</div>
+          <div class="cart-item-icon">
+            <i class="fas ${i.icon}"></i>
           </div>
-          <button class="cart-item-remove" onclick="removeFromCart(${item.cartId})">
+          <div class="cart-item-info">
+            <div class="cart-item-title">${i.name}</div>
+            <div class="cart-item-price">${i.price.toLocaleString()} CFA</div>
+            <div class="cart-item-color">
+              <span style="display:inline-block; width:12px; height:12px; border-radius:50%; background:${i.selectedColor}; margin-right:5px;"></span>
+              ${i.colorName}
+            </div>
+          </div>
+          <button class="cart-item-remove" onclick="removeFromCart(${i.cartId})">
             <i class="fas fa-trash-alt"></i>
           </button>
         </div>
       `;
     });
-
     cartItems.innerHTML = html;
     cartTotal.textContent = total.toLocaleString() + ' CFA';
   }
 
-  // ===== WHATSAPP =====
   document.getElementById('checkoutBtn').addEventListener('click', () => {
-    if (cart.length === 0) return alert('Votre panier est vide');
-
-    let message = '*Nouvelle commande Rassoul Shop Tidianiya*%0A%0A';
-    cart.forEach(item => message += `• ${item.name} : ${item.price.toLocaleString()} CFA%0A`);
-    message += `%0A*Total : ${cart.reduce((acc, i) => acc + i.price, 0).toLocaleString()} CFA*`;
-    window.open(`https://wa.me/221774397427?text=${message}`, '_blank');
+    if (!cart.length) return alert('Votre panier est vide');
+    let msg = '*Nouvelle commande Rassoul Shop Tidianiya*%0A%0A';
+    cart.forEach(i => {
+      msg += `• ${i.name} (${i.colorName}) : ${i.price.toLocaleString()} CFA%0A`;
+    });
+    const total = cart.reduce((acc, i) => acc + i.price, 0);
+    msg += `%0A*Total : ${total.toLocaleString()} CFA*`;
+    window.open(`https://wa.me/221774397427?text=${msg}`, '_blank');
   });
 
   window.contactWholesale = (type) => {
@@ -1387,7 +1567,6 @@
     window.open(`https://wa.me/221774397427?text=*Message de ${name}*%0ATéléphone : ${phone}%0ASujet : ${subject}%0A%0A${message}`, '_blank');
   });
 
-  // ===== ANCRES =====
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -1396,10 +1575,8 @@
     });
   });
 
-  // ===== INITIALISATION =====
   displayProducts();
   updateCart();
 </script>
-
 </body>
 </html>
